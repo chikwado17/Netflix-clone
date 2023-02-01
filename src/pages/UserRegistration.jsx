@@ -6,22 +6,24 @@ import {UserAuth} from '../context/AuthContext';
 
 
 
-const Signup = () => {
+const UserRegistration = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
  
-    const {signUp} = UserAuth();
+    const {register} = UserAuth();
 
    
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            await signUp(email, password);
+            await register(email, password);
+
             navigate('/');
+
         }catch(err){
             console.log(err);
         }
@@ -59,4 +61,4 @@ const Signup = () => {
   )
 }
 
-export default Signup;
+export default UserRegistration;

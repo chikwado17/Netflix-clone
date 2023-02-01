@@ -4,12 +4,12 @@ import { UserAuth } from '../context/AuthContext';
 
 const Navbar = () => {
 
-  const {user, logOut} = UserAuth();
+  const {user, logout} = UserAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
-      await logOut();
+      await logout();
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -25,9 +25,9 @@ const Navbar = () => {
         {user?.email ? (
           <div>
           <Link to='/user-dashboard'>
-              <button className='text-white font-bold pr-4'>Account</button>
+              <button className='border text-white mr-1 border-gray-300 font-bold px-3 py-2 '>Account</button>
           </Link>
-            <button onClick={handleSignOut} className='text-white font-bold bg-red-600 px-6 py-2 rounded cursor-pointer'>Sign Out</button>
+            <button onClick={handleSignOut} className='text-white font-bold bg-red-600 px-6 py-2 rounded cursor-pointer'>Logout</button>
         </div>
         ) : (
           <div>

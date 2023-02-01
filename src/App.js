@@ -4,22 +4,31 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import { AuthContextProvider } from './context/AuthContext';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+import UserRegistration from './pages/UserRegistration';
 import UserDashboard from './pages/UserDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
+import NotFound from './pages/NotFound';
+import Watch from './pages/Watch';
+import WatchFavorite from './pages/WatchFavorite';
 
 function App() {
   return (
-    <>
       <AuthContextProvider>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Signup />} />
-          <Route path='/user-dashboard' element={<UserDashboard />} />
+          <Route path='/register' element={<UserRegistration />} />
+          
+          <Route path='/user-dashboard' element={
+          <ProtectedRoute>
+            <UserDashboard />
+          </ProtectedRoute>} />
+          <Route path='/watch/:id' element={<Watch />} />
+          <Route path='/watch-favorite/:id' element={<WatchFavorite />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </AuthContextProvider>
-    </>
   );
 }
 
